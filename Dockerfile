@@ -14,7 +14,7 @@ RUN apt-get install -y ffmpeg
 
 # imagemagick 
 RUN apt-get install -y ghostscript
-RUN apt-get install -y libgs-dev gs-esp
+RUN apt-get install -y libgs-dev
 RUN apt-get install -y imagemagick
 
 RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive /build/prepare
