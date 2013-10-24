@@ -35,4 +35,4 @@ RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive /build/prepare
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get clean
 
-ENTRYPOINT ["/usr/sbin/sshd", "-D"]
+CMD ["/usr/sbin/sshd", "-D"]
