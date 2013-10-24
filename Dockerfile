@@ -24,8 +24,8 @@ RUN mkdir /var/run/sshd
 
 # add our key for ssh'ing to and from this container
 RUN mkdir /root/.ssh && chmod 700 /root/.ssh
-ADD ~/.ssh/id_rsa.pub /root/.ssh/authorized_keys
-ADD ~/.ssh/id_rsa.pub /root/.ssh/
+ADD /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+ADD /root/.ssh/id_rsa.pub /root/.ssh/
 RUN chmod 400 /root/.ssh/authorized_keys && chown root. /root/.ssh/authorized_keys
 # update ssh config to disable stricthostkeychecking
 RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
