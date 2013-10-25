@@ -38,7 +38,7 @@ else
 fi
 
 # write the name of the selected buildpack for easy lookup post deployment
-echo $selected_buildpack > /selected_buildpack
+echo $buildpack_name > /buildpack_name
 
 $selected_buildpack/bin/compile "$build_root" "$cache_root"
 
