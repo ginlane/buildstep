@@ -31,8 +31,10 @@ else
 fi
 
 if [ -n "$selected_buildpack" ]; then
+  echo 
   echo "       $buildpack_name app detected"
 else
+  echo
   echo "       Unable to select a buildpack"
   exit 1
 fi
