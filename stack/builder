@@ -11,7 +11,7 @@ if [[ ! -f "/selected_buildpack" ]]; then
   /bin/bash /build/detector
 fi
 
-$selected_buildpack = $(cat /selected_buildpack)
+selected_buildpack=$(cat /selected_buildpack)
 $selected_buildpack/bin/compile "$build_root" "$cache_root"
 
 echo "-----> Discovering process types"
