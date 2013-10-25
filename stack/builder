@@ -6,40 +6,12 @@ build_root=/build/app
 cache_root=/cache
 buildpack_root=/build/buildpacks
 
-cp -r /app /build
-
-buildpacks=($buildpack_root/*)
-selected_buildpack=
-
-mkdir -p $cache_root
-mkdir -p $build_root/.profile.d
-
-# This is to get a custom buildpack. Probably should use profile.d though
-[[ -f "$app_root/.env" ]] && . "$app_root/.env"
-
-if [ -n "$BUILDPACK_URL" ]; then
-  echo "       Fetching custom buildpack"
-  buildpack="$buildpack_root/custom"
-  rm -rf "$buildpack"
-  git clone --depth=1 "$BUILDPACK_URL" "$buildpack"
-  selected_buildpack="$buildpack"
-  buildpack_name=$($buildpack/bin/detect "$build_root") && selected_buildpack=$buildpack
-else
-  for buildpack in "${buildpacks[@]}"; do
-    buildpack_name=$($buildpack/bin/detect "$build_root") && selected_buildpack=$buildpack && break
-  done
+# run detection if it hasn't been run
+if [[ ! -f "/selected_buildpack" ]]; then
+  /bin/bash /build/detector
 fi
 
-if [ -n "$selected_buildpack" ]; then
-  echo "       $buildpack_name app detected"
-else
-  echo "       Unable to select a buildpack"
-  exit 1
-fi
-
-# write the name of the selected buildpack for easy lookup post deployment
-echo $buildpack_name > /buildpack_name
-
+$selected_buildpack = $(cat /selected_buildpack)
 $selected_buildpack/bin/compile "$build_root" "$cache_root"
 
 echo "-----> Discovering process types"

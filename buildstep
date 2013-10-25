@@ -3,7 +3,7 @@ set -e
 NAME="$1"
 
 # Place the app inside the container 
-ID=$(cat | docker run -i -a stdin progrium/buildstep /bin/bash -c "mkdir -p /app && tar -xC /app")
+ID=$(cat | docker run -i -a stdin ginlane/buildstep /bin/bash -c "mkdir -p /app && tar -xC /app")
 test $(docker wait $ID) -eq 0
 docker commit $ID $NAME > /dev/null
 
