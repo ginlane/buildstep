@@ -39,11 +39,7 @@ else
   exit 1
 fi
 
-# source env vars -- violating 12 factor here but spree kind of necessitates it
-# for file in "$app_root/.profile.d/*"; do 
-#   source $file; 
-# done
-source "/app/.profile.d/app-env.sh"
+
 
 # write the name of the selected buildpack for easy lookup post deployment
 echo $selected_buildpack > /selected_buildpack

@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# source env vars -- violating 12 factor here but spree kind of necessitates it
+source "/app/.profile.d/app-env.sh"
+
 app_root=/app
 build_root=/build/app
 cache_root=/cache
