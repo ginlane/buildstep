@@ -3,6 +3,8 @@ set -e
 
 # source env vars -- violating 12 factor here but spree kind of necessitates it
 source "/app/.profile.d/app-env.sh"
+cd /app
+RAILS_ENV=production rake db:migrate
 
 app_root=/app
 build_root=/build/app
