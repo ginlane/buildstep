@@ -40,15 +40,9 @@ else
 fi
 
 # source env vars -- violating 12 factor here but spree kind of necessitates it
-cat > /exec <<EOF
-#!/bin/bash
-export HOME=/app
-for file in $app_root/.profile.d/*; do source \$file; done
-hash -r
-cd $app_root
-"\$@"
-EOF
-chmod +x /exec
+for file in "$app_root/.profile.d/*"; do 
+  source $file; 
+done
 
 # write the name of the selected buildpack for easy lookup post deployment
 echo $selected_buildpack > /selected_buildpack
