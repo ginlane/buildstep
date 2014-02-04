@@ -17,6 +17,9 @@ RUN apt-get install -y ghostscript
 RUN apt-get install -y libgs-dev
 RUN apt-get install -y imagemagick
 
+# libmagic
+RUN apt-get install -y libmagic-dev
+
 # setup ssh
 # Finally - we wanna be able to SSH in
 RUN apt-get install -y openssh-server
