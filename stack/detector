@@ -39,8 +39,6 @@ else
   exit 1
 fi
 
-
-
 # write the name of the selected buildpack for easy lookup post deployment
 echo $selected_buildpack > /selected_buildpack
 echo $buildpack_name > /buildpack_name

@@ -1,15 +1,15 @@
 #!/bin/bash
 set -e
 
-# source env vars -- violating 12 factor here but spree kind of necessitates it
-source "/app/.profile.d/app-env.sh"
-cd /app
-RAILS_ENV=production rake db:migrate
-
 app_root=/app
 build_root=/build/app
 cache_root=/cache
 buildpack_root=/build/buildpacks
+
+if [[ -f "$app_root/.profile.d/app-env.sh" ]]; then
+  source "$app_root/.profile.d/app-env.sh"
+  echo "butts"
+fi
 
 # run detection if it hasn't been run
 if [[ ! -f "/selected_buildpack" ]]; then
