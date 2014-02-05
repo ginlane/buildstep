@@ -8,7 +8,6 @@ buildpack_root=/build/buildpacks
 
 if [[ -f "$app_root/.profile.d/app-env.sh" ]]; then
   source "$app_root/.profile.d/app-env.sh"
-  echo "butts"
 fi
 
 # run detection if it hasn't been run
