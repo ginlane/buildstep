@@ -1,10 +1,14 @@
 FROM ubuntu:quantal
 MAINTAINER Dmitri Vassilev "dmitri@ginlanemedia.com"
 
+RUN apt-get update
 RUN mkdir /build
 
 ADD ./stack/ /build
 ADD sources.list /etc/apt/sources.list.d/
+
+# dialog
+RUN apt-get install -y dialog
 
 # ffmpeg
 RUN apt-get install -y libavcodec-extra-53
