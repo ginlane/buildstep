@@ -1,7 +1,6 @@
 FROM ubuntu:quantal
 MAINTAINER Dmitri Vassilev "dmitri@ginlanemedia.com"
 
-RUN apt-get update
 RUN mkdir /build
 
 ADD ./stack/ /build
