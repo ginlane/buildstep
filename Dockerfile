@@ -1,11 +1,10 @@
 FROM ubuntu:quantal
 MAINTAINER Dmitri Vassilev "dmitri@ginlanemedia.com"
 
-RUN apt-get update
 RUN mkdir /build
-
 ADD ./stack/ /build
 ADD sources.list /etc/apt/sources.list.d/
+RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive /build/prepare
 
 # dialog
 RUN apt-get install -y dialog
@@ -39,7 +38,6 @@ RUN chmod 400 /root/.ssh/authorized_keys && chown root. /root/.ssh/authorized_ke
 RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 EXPOSE 22 
 
-RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive /build/prepare
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get clean
 
